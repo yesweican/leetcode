@@ -1,0 +1,1 @@
+select Name as Customers from (select c.Name, o.Id as OrderId from Customers as c left join Orders as o on c.Id = o.CustomerId ) as NewTable where OrderId is null;

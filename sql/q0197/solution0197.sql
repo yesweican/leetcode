@@ -1,0 +1,1 @@
+select Id from (select w1.Id, w1.RecordDate, w1.Temperature as Temp1, w2.Temperature as Temp2 from Weather as w1 join Weather as w2 on w2.RecordDate = DATE_SUB(w1.RecordDate, INTERVAL 1 DAY)) as NewTable where Temp2<Temp1;
