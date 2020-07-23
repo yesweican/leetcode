@@ -1,0 +1,1 @@
+select Candidate.Name from Candidate join (select CandidateId, Count(*) as v from Vote group by CandidateId order by v desc limit 1) as Votes on Candidate.Id=Votes.CandidateId;
