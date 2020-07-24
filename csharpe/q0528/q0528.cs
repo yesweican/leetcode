@@ -11,7 +11,7 @@ namespace LeetCodeChallenge04
         int[] bounds;
         int UBound;
         System.Random r;
-        public Solution(int[] w)
+        public q528(int[] w)
         {
 
             bounds = new int[w.Length];
