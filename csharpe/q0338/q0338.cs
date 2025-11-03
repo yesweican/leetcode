@@ -1,32 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+public class Solution {
+    ///
+    /// Ultra Optimized DP Solution
+    /// 
+    public int[] CountBits(int n) {
+        int[] result = new int[n+1];
 
-namespace WindowsFormsApp1
-{
-    public class q338
-    {
-        public int[] CountBits(int num)
-        {
-            int i = 0; int b = 1;
-            int[] dp = new int[num + 1];
-
-            while (b <= num)
-            {
-                //second part of the condition is for the top bit
-                while (i < b && (i + b) <= num)
-                {
-                    //num i+b has ONE more bit than i on the b th bit
-                    //like  d=2:3=>1, 2=>0; d=4:4=>0, 5=>1
-                    dp[i + b] = dp[i] + 1;
-                    i++;
-                }
-                i = 0; b <<= 1;
+        result[0]=0;
+        for(int i=1; i<=n; i++) {
+            if(i % 2==1) {
+                result[i]=result[i-1]+1;
             }
-
-            return dp;
+            else {
+                result[i]=result[i/2];
+            }
         }
+
+        return result;       
+        
     }
+
+
 }
