@@ -1,0 +1,40 @@
+public class Solution {
+    public bool WordPattern(string pattern, string s) {
+        String[] words = s.Split(' ');
+        if (pattern.Length != words.Length)
+        {
+            return false;
+        }
+        // 记录 pattern 字符到单词的映射
+        Dictionary<char, String> patternToWord = new Dictionary<char, string>();
+        // 记录那些已经有 pattern 对应的单词
+        HashSet<String> wordSet = new HashSet<String>();
+
+        for (int i = 0; i < pattern.Length; i++)
+        {
+            char c = pattern[i];
+            String word = words[i];
+            if (!patternToWord.Keys.Contains(c))
+            {
+                if (wordSet.Contains(word))
+                {
+                    // 这个单词以前已经有其他模式字符对应了
+                    return false;
+                }
+                // 添加 c -> word 的映射
+                patternToWord.Add(c, word);
+                // 这个单词已经有模式字符对应
+                wordSet.Add(word);
+            }
+            else
+            {
+                // 这个 pattern 字符已经出现过，确保和之前对应的单词相同
+                if (patternToWord[c]!=word)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;     
+    }
+}
